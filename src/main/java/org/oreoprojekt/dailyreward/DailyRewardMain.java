@@ -11,50 +11,28 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.oreoprojekt.dailyreward.eventListener.DREventListener;
 import org.oreoprojekt.dailyreward.manager.DRManager;
 
 import java.util.Arrays;
 
 
-public final class DailyRewardMain extends JavaPlugin implements Listener {
+public final class DailyRewardMain extends JavaPlugin {
 
     public DRManager data;
     public static String prefix = ChatColor.GRAY + "[" + ChatColor.GOLD + "REWARD" + ChatColor.GRAY + "] ";
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         getServer().getConsoleSender().sendMessage(prefix + ChatColor.GREEN + "DailyReward Plugin ON!");
-        //getCommand("dr").setExecutor(new DRCommand());
-        getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new DREventListener(this), this);
 
         this.data = new DRManager(this);
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
         getServer().getConsoleSender().sendMessage(prefix +ChatColor.RED + "DailyReward Plugin OFF!");
-    }
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        e.setJoinMessage(null);
-        Player player = e.getPlayer();
-        int count = 0;
-        if (this.data.getConfig().contains("players." + player.getUniqueId().toString() + ".nickname." + player.getName().toString() + ".count")) {
-            count = this.data.getConfig().getInt("players." + player.getUniqueId().toString() + ".nickname." + player.getName().toString() + ".count");
-        }
-        this.data.getConfig().set("players." + player.getUniqueId().toString() + ".nickname." + player.getName().toString() + ".count", (count + 1));
-        this.data.saveConfig();
-        check(player);
-        count++;
-        //e.getPlayer().sendMessage(prefix + count + "번 접속하셨습니다!");
-    }
-
-    @EventHandler
-    public void onQuit(PlayerQuitEvent e) {
-        e.setQuitMessage(null);
     }
 
     public void check(Player player) {
