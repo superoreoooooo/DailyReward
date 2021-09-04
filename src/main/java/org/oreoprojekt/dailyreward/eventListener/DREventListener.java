@@ -1,14 +1,11 @@
 package org.oreoprojekt.dailyreward.eventListener;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.oreoprojekt.dailyreward.DailyRewardMain;
-
-import java.io.File;
 
 public class DREventListener implements Listener {
     private DailyRewardMain plugin;
