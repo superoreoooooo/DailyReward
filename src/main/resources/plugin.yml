@@ -4,3 +4,5 @@ main: org.oreoprojekt.dailyreward.DailyRewardMain
 api-version: 1.16
 author: ORE0
 description: 일일보상이라 쓰고 최초 접속보상이라 읽는다. 이름지을때랑 지금이랑 개발방향이 달라졌는데 바꾸기 귀찮음 냅둘거임
+commands:
+  dr:

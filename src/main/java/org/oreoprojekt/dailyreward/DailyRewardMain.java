@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.oreoprojekt.dailyreward.command.DRCommand;
 import org.oreoprojekt.dailyreward.eventListener.DREventListener;
 import org.oreoprojekt.dailyreward.manager.DRManager;
 
@@ -22,6 +23,7 @@ public final class DailyRewardMain extends JavaPlugin {
     public void onEnable() {
         getServer().getConsoleSender().sendMessage(prefix + ChatColor.GREEN + "DailyReward Plugin ON!");
         getServer().getPluginManager().registerEvents(new DREventListener(this), this);
+        getCommand("dr").setExecutor(new DRCommand(this));
 
         this.data = new DRManager(this);
     }
